@@ -10,6 +10,10 @@ use Mix.Config
 config :github_stats,
   ecto_repos: [GithubStats.Repo]
 
+config :github_stats, GithubStats.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
+
 # Configures the endpoint
 config :github_stats, GithubStatsWeb.Endpoint,
   url: [host: "localhost"],
