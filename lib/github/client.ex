@@ -5,12 +5,12 @@ defmodule GithubStats.Github.Client do
   alias GithubStats.Github.RepoInfo
   alias Tesla.Env
 
-  plug Tesla.Middleware.BaseUrl, "https://api.github.com/users/"
+  @base_url "https://api.github.com/users"
   plug Tesla.Middleware.JSON
   plug Tesla.Middleware.Headers, [{"user-agent", "Tesla"}]
 
-  def get_repos(username) do
-    "#{username}/repos"
+  def get_repos(url \\ @base_url, username) do
+    "#{url}/#{username}/repos"
     |> get()
     |> handle_get()
   end
