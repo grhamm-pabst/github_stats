@@ -10,9 +10,17 @@ use Mix.Config
 config :github_stats,
   ecto_repos: [GithubStats.Repo]
 
+config :github_stats, GithubStatsWeb.Auth.Pipeline,
+  module: GithubStatsWeb.Auth.Guardian,
+  error_handler: GithubStatsWeb.Auth.ErrorHandler
+
 config :github_stats, GithubStats.Repo,
   migration_primary_key: [type: :binary_id],
   migration_foreign_key: [type: :binary_id]
+
+config :github_stats, GithubStatsWeb.Auth.Guardian,
+  issuer: "github_stats",
+  secret_key: "qdY+SRR9psVBpb4usmMY6F5nvXCPcL3zGOEj1z0sznRydI5goDUpDsldeCb6hhEU"
 
 # Configures the endpoint
 config :github_stats, GithubStatsWeb.Endpoint,

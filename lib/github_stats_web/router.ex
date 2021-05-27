@@ -1,12 +1,24 @@
 defmodule GithubStatsWeb.Router do
   use GithubStatsWeb, :router
 
+  alias GithubStatsWeb.Auth.Pipeline, as: AuthPipeline
+
   pipeline :api do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug AuthPipeline
+  end
+
   scope "/api", GithubStatsWeb do
     pipe_through :api
+
+    post "/users", UsersController, :create
+  end
+
+  scope "/api", GithubStatsWeb do
+    pipe_through [:api, :auth]
 
     get "/repos/:name", ReposController, :show
   end

@@ -1,9 +1,7 @@
 defmodule GithubStats do
-  @moduledoc """
-  GithubStats keeps the contexts that define your domain
-  and business logic.
+  alias GithubStats.Users.Create, as: UsersCreate
+  alias GithubStats.Users.Get, as: UsersGet
 
-  Contexts are also responsible for managing your data, regardless
-  if it comes from the database, an external API or others.
-  """
+  defdelegate create_user(params), to: UsersCreate, as: :call
+  defdelegate get_user(idi), to: UsersGet, as: :by_id
 end

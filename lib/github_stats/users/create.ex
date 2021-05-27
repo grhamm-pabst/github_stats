@@ -4,7 +4,7 @@ defmodule GithubStats.Users.Create do
   def call(params) do
     with changeset <- User.changeset(params),
          {:ok, %User{} = user} <- Repo.insert(changeset) do
-      user
+      {:ok, user}
     else
       {:error, %Error{}} = error -> error
       {:error, result} -> {:error, Error.build(:bad_request, result)}
