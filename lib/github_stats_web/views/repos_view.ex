@@ -3,9 +3,10 @@ defmodule GithubStatsWeb.ReposView do
 
   alias GithubStats.Github.RepoInfo
 
-  def render("repo.json", %{repos: [%RepoInfo{} | _tail] = repos}) do
+  def render("repo.json", %{repos: [%RepoInfo{} | _tail] = repos, token: token}) do
     %{
-      repos: repos
+      repos: repos,
+      token: token
     }
   end
 end

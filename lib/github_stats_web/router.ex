@@ -14,6 +14,7 @@ defmodule GithubStatsWeb.Router do
   scope "/api", GithubStatsWeb do
     pipe_through :api
 
+    post "/users/sign_in", UsersController, :sign_in
     post "/users", UsersController, :create
   end
 
